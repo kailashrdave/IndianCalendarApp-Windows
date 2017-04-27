@@ -1,0 +1,27 @@
+﻿<xapCache source="F:\Project\IndianCalendarApp\Bin\Debug\IndianCalendarApp_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="1/25/2015 10:04:38 PM">
+  <file source="F:\Project\IndianCalendarApp\obj\Debug\IndianCalendarApp.dll" archivePath="IndianCalendarApp.dll" lastWriteTime="1/25/2015 10:04:32 PM" />
+  <file source="F:\Project\IndianCalendarApp\README_FIRST.txt" archivePath="README_FIRST.txt" lastWriteTime="1/25/2015 1:39:24 PM" />
+  <file source="F:\Project\IndianCalendarApp\Toolkit.Content\ApplicationBar.Add.png" archivePath="Toolkit.Content\ApplicationBar.Add.png" lastWriteTime="1/25/2015 1:39:24 PM" />
+  <file source="F:\Project\IndianCalendarApp\Toolkit.Content\ApplicationBar.Cancel.png" archivePath="Toolkit.Content\ApplicationBar.Cancel.png" lastWriteTime="1/25/2015 1:39:24 PM" />
+  <file source="F:\Project\IndianCalendarApp\Toolkit.Content\ApplicationBar.Check.png" archivePath="Toolkit.Content\ApplicationBar.Check.png" lastWriteTime="1/25/2015 1:39:24 PM" />
+  <file source="F:\Project\IndianCalendarApp\Toolkit.Content\ApplicationBar.Delete.png" archivePath="Toolkit.Content\ApplicationBar.Delete.png" lastWriteTime="1/25/2015 1:39:23 PM" />
+  <file source="F:\Project\IndianCalendarApp\Toolkit.Content\ApplicationBar.Select.png" archivePath="Toolkit.Content\ApplicationBar.Select.png" lastWriteTime="1/25/2015 1:39:22 PM" />
+  <file source="F:\Project\IndianCalendarApp\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="1/23/2015 10:24:36 PM" />
+  <file source="F:\Project\IndianCalendarApp\Assets\swagtm.png" archivePath="Assets\swagtm.png" lastWriteTime="1/24/2015 3:49:24 AM" />
+  <file source="F:\Project\IndianCalendarApp\Assets\swastik.jpg" archivePath="Assets\swastik.jpg" lastWriteTime="1/24/2015 3:49:24 AM" />
+  <file source="F:\Project\IndianCalendarApp\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="1/23/2015 10:24:35 PM" />
+  <file source="F:\Project\IndianCalendarApp\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="1/23/2015 10:24:36 PM" />
+  <file source="F:\Project\IndianCalendarApp\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="1/23/2015 10:24:36 PM" />
+  <file source="F:\Project\IndianCalendarApp\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="1/23/2015 10:24:36 PM" />
+  <file source="F:\Project\IndianCalendarApp\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="1/25/2015 9:10:11 PM" />
+  <file source="F:\Project\IndianCalendarApp\Bin\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="1/23/2015 10:24:36 PM" />
+  <file source="F:\Project\IndianCalendarApp\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="1/23/2015 10:24:36 PM" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\ExtensionSDKs\MSAdvertising\6.1\References\CommonConfiguration\neutral\Microsoft.Advertising.Mobile.dll" archivePath="Microsoft.Advertising.Mobile.dll" lastWriteTime="9/16/2013 12:09:00 PM" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\ExtensionSDKs\MSAdvertising\6.1\References\CommonConfiguration\neutral\Microsoft.Advertising.Mobile.UI.dll" archivePath="Microsoft.Advertising.Mobile.UI.dll" lastWriteTime="9/16/2013 12:09:00 PM" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Libraries\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="1/1/2013 6:57:00 PM" />
+  <file source="F:\Project\IndianCalendarApp\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="1/25/2015 1:39:15 PM" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Libraries\Microsoft.Phone.Controls.Maps.dll" archivePath="Microsoft.Phone.Controls.Maps.dll" lastWriteTime="1/1/2013 6:57:00 PM" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\ExtensionSDKs\MSAdvertising\6.1\References\CommonConfiguration\neutral\Microsoft.Advertising.Mobile.xml" archivePath="Microsoft.Advertising.Mobile.xml" lastWriteTime="9/16/2013 12:13:06 PM" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\ExtensionSDKs\MSAdvertising\6.1\References\CommonConfiguration\neutral\Microsoft.Advertising.Mobile.UI.xml" archivePath="Microsoft.Advertising.Mobile.UI.xml" lastWriteTime="9/16/2013 12:13:06 PM" />
+  <file source="F:\Project\IndianCalendarApp\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="1/25/2015 9:10:13 PM" />
+</xapCache>

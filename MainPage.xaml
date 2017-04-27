@@ -1,0 +1,378 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="IndianCalendarApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <!-- LOCALIZATION NOTE:
+            To localize the displayed strings copy their values to appropriately named
+            keys in the app's neutral language resource file (AppResources.resx) then
+            replace the hard-coded text value between the attributes' quotation marks
+            with the binding clause whose path points to that string name.
+
+            For example:
+
+                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+
+            This binding points to the template's string resource named "ApplicationTitle".
+
+            Adding supported languages in the Project Properties tab will create a
+            new resx file per language that can carry the translated values of your
+            UI strings. The binding in these examples will cause the value of the
+            attributes to be drawn from the .resx file that matches the
+            CurrentUICulture of the app at run time.
+         -->
+
+        <!--Pivot Control-->
+        <phone:Pivot x:Name="mypivot"  Title="Hindu Calendar" FontFamily="Verdana" SelectionChanged="Pivot_SelectionChanged">
+            <!--Pivot item one-->
+            <phone:PivotItem  Header="Today" Loaded="PivotItem_Loaded" LayoutUpdated="PivotItem_LayoutUpdated" GotFocus="PivotItem_GotFocus" ManipulationCompleted="PivotItem_ManipulationCompleted">
+                <!--Double line list with text wrapping-->
+                <Grid x:Name="ContentPanel" Style="{StaticResource HelloBG}" Grid.Row="1" Margin="12,0,12,0">
+
+                    <StackPanel Height="200" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        <Grid>
+                            <TextBlock FontSize="30" Text="Today"></TextBlock>
+                            <TextBlock Name="txtToday" FontSize="30" Text="10 January 2015" Margin="100,0,0,0"></TextBlock>
+                        </Grid>
+
+                    </StackPanel>
+                </Grid>
+            </phone:PivotItem>
+
+            <!--Pivot item two-->
+            <phone:PivotItem Header="Calendar" Margin="0,-1,0,-3" Name="calendar">
+                <!--Double line list no text wrapping-->
+                <Grid  Grid.Row="1" >
+                    <StackPanel Height="115" VerticalAlignment="Top">
+                        <Grid Height="97">
+                            <ListBox x:Name="lstEvents" Margin="0" ItemsSource="{Binding}" SelectionChanged="lstEvents_SelectionChanged">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Height="30" Margin="1">
+                                            <TextBlock Text="{Binding Day}"
+										VerticalAlignment="Top" 
+										Height="30" Width="30" 
+										FontSize="20" HorizontalAlignment="Left" Foreground="Orange" TextWrapping="Wrap" />
+                                            <TextBlock Margin="35,0,0,0" Text="{Binding Title}"
+										VerticalAlignment="Top"
+										Height="30" Width="300" 
+										FontSize="20" Foreground="Orange" TextWrapping="Wrap" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </StackPanel>
+
+                    <Border Margin="0,123,0,0" Padding="5" 
+				BorderBrush="Gray" BorderThickness="2,2,2,2" CornerRadius="3"
+				VerticalAlignment="Top" Height="377">
+                        <StackPanel HorizontalAlignment="Center" Background="Transparent"   Width="456" Height="388" Margin="-19,0">
+
+                            <StackPanel>
+                                <Grid Height="55" Margin="0,0,-0.266,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="73*"/>
+                                        <ColumnDefinition Width="6*"/>
+                                        <ColumnDefinition Width="277*"/>
+                                        <ColumnDefinition Width="65"/>
+                                        <ColumnDefinition Width="9*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button  Content="&lt;&lt;" BorderBrush="{x:Null}" Click="GoToPreviousMonth" Margin="-5,-5,0,-4" HorizontalAlignment="Right" Width="84"  VerticalAlignment="Bottom" Height="64" Grid.ColumnSpan="2"/>
+                                    <TextBlock  FontFamily="Verdana" TextAlignment="Center" x:Name="CalendarHeader" HorizontalAlignment="Center" Text="January 2015" VerticalAlignment="Center"  FontWeight="ExtraLight" FontSize="26" Margin="19,11,6,10" Grid.Column="2" Height="34" Width="252"/>
+                                    <Button Content="&gt;&gt;" BorderBrush="{x:Null}"  HorizontalAlignment="Right" Click="GoToNextMonth" Width="78" RenderTransformOrigin="-0.131,0.471" Margin="0,-5,0,-4" Grid.Column="2" Grid.ColumnSpan="3"/>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Background="White" Orientation="Horizontal">
+                                <Grid Margin="0.5,0.5,0.5,0" Width="64" Height="55"  Background="#FF363636">
+                                    <TextBlock Text="Sun" Foreground="White" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Grid Margin="0.5,0.5,0.5,0" Width="64" Height="55" Background="#FF363636">
+                                    <TextBlock Text="Mon" Foreground="White" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Grid Width="64" Margin="0.5,0.5,0.5,0"  Height="55" Background="#FF363636">
+                                    <TextBlock Text="Tue" Foreground="White" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Grid Width="64" Margin="0.5,0.5,0.5,0" Height="55" Background="#FF363636">
+                                    <TextBlock Text="Wed" Foreground="White" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Grid Width="64" Margin="0.5,0.5,0.5,0" Height="55" Background="#FF363636">
+                                    <TextBlock Text="Thu" Foreground="White" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Grid Width="64" Margin="0.5,0.5,0.5,0" Height="55" Background="#FF363636">
+                                    <TextBlock Text="Fri" Foreground="White" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Grid Width="63" Margin="0.5,0.5,0.5,0" Height="55" Background="#FF363636">
+                                    <TextBlock Text="Sat" Foreground="White" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="13,17,20,17" Width="31"/>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Background="White"  x:Name="CalendarContainer" Margin="0,0,-0.266,5" Height="255">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="456" Height="42" Margin="0,0">
+                                    <Grid Style="{StaticResource tableCell}">
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="1" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                        <TextBlock Foreground="Yellow" Tap="TextBlock_Tap" FontSize="18" Text="1" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}">
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid  Style="{StaticResource tableCell}">
+                                        <TextBlock  Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26"  Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Background="White" Width="456" Orientation="Horizontal" HorizontalAlignment="Center" Height="42" Margin="0,0">
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Background="White" Width="456" Orientation="Horizontal" HorizontalAlignment="Center" Height="42" Margin="0,0">
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Background="White" Width="456" Orientation="Horizontal" HorizontalAlignment="Center" Height="42" Margin="0,0">
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Text="" Tap="TextBlock_Tap" FontSize="26" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Background="White" Width="456" Orientation="Horizontal" HorizontalAlignment="Center" Height="42" Margin="0,0">
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Width="456" Orientation="Horizontal" HorizontalAlignment="Center" Height="41" Margin="0,0">
+                                    <Grid Style="{StaticResource tableCell}" >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Style="{StaticResource tableCell}"  >
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid  Style="{StaticResource tableCell}">
+                                        <TextBlock Tap="TextBlock_Tap" FontSize="26" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Grid HorizontalAlignment="Left" Height="100" Margin="0,530,0,0" VerticalAlignment="Top" Width="480">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="117*"/>
+                            <ColumnDefinition Width="43*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Width="480"  Margin="0,0,0,0" Grid.ColumnSpan="2" >
+                            <UI:AdControl Keywords="Trading, Hotels, Travels, Gold, Shopping, Mobile, Real estate, house on Rent, discount, laptop, offers, astrology" 
+                              IsEnabled="True" Visibility="Visible" 
+                              Name="adControl" VerticalAlignment="Top" 
+                              Width="480" IsAutoRefreshEnabled="True"
+                              ApplicationId="0d9c8b66-0757-4fe5-b152-158d85f68e09" 
+                              AdUnitId="202423" Height="80" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+            </phone:PivotItem>
+
+
+            <!--Pivot item two-->
+            <phone:PivotItem Header="Horoscope">
+                <!--Double line list no text wrapping-->
+                <phone:LongListSelector Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,17">
+                                <TextBlock Text="{Binding LineOne}" TextWrapping="NoWrap" Margin="12,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                <TextBlock Text="{Binding LineThree}" TextWrapping="NoWrap" Margin="12,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </phone:PivotItem>
+
+
+            <!--Pivot item two-->
+            <phone:PivotItem Header="Muhurta">
+                <!--Double line list no text wrapping-->
+                <phone:LongListSelector Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,17">
+                                <TextBlock Text="{Binding LineOne}" TextWrapping="NoWrap" Margin="12,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                <TextBlock Text="{Binding LineThree}" TextWrapping="NoWrap" Margin="12,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </phone:PivotItem>
+
+
+            <!--Pivot item two-->
+            <phone:PivotItem Header="Birth">
+                <Grid HorizontalAlignment="Left" Height="603" VerticalAlignment="Top" Width="456">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <toolkit:DatePicker x:Name="birthDate" ValueChanged="datePicker_ValueChanged" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Text="Please enter your birth date" Name="txtBirthDateMsg"></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Grid.Row="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80">
+                                </RowDefinition>
+                                <RowDefinition Height="80"></RowDefinition>
+                                <RowDefinition Height="80"></RowDefinition>
+                                <RowDefinition Height="80"></RowDefinition>
+                                
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Years" Width="250" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Row="0" Name="txtbirthYears" Grid.Column="1" Text="-" Width="250" HorizontalAlignment="Left"></TextBlock>
+                                
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Months" Width="250" HorizontalAlignment="Left"></TextBlock>
+                            <TextBlock Grid.Row="1" Name="txtbirthMonths" Grid.Column="1" Text="-" Width="250" HorizontalAlignment="Left"></TextBlock>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Weeks" Width="250" HorizontalAlignment="Left"></TextBlock>
+                            <TextBlock Grid.Row="2"  Name="txtbirthWeeks" Grid.Column="1" Text="-" Width="250" HorizontalAlignment="Left"></TextBlock>
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Days" Width="250" HorizontalAlignment="Left"></TextBlock>
+                            <TextBlock Grid.Row="3" Name="txtbirthDays" Grid.Column="1" Text="-" Width="250" HorizontalAlignment="Left"></TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <!--Double line list no text wrapping-->
+                  
+                    
+            </phone:PivotItem>
+
+        </phone:Pivot>
+
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" IsHitTestVisible="False" />-->
+    </Grid>
+
+</phone:PhoneApplicationPage>
